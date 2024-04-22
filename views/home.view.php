@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <?php require basePath('views/partials/head.php') ?>
+    <?php loadPartial('head'); ?>
 
 
     <body class="bg-gray-100">
 
-        <?php require basePath('views/partials/navbar.php') ?>
+        <?php loadPartial('navbar'); ?>
+        <?php loadPartial('showcase-search'); ?>
 
-        <?php require basePath('views/partials/showcase-search.php') ?>
-
-        <?php require basePath('views/partials/top-banner.php') ?>
-
+        <?php loadPartial('top-banner'); ?>
 
         <!-- Internship List -->
         <section>
@@ -86,7 +84,8 @@
                 </a>
 
 
-                <?php require basePath('views/partials/bottom-banner.php') ?>
+                <?php require basePath('views/partials/.php') ?>
+                <?php loadPartial('bottom-banner'); ?>
 
             </div>
         </section>
