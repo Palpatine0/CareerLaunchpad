@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.bootcdn.net/ajax/libs/tailwindcss/2.2.7/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>广科大校内实习网站</title>
+  </head>
+  <body class="bg-gray-100">
+    <!-- 头部 -->
+    <header class="bg-blue-900 text-white p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-3xl font-semibold">
+          <a href="index.html">广科大校内实习网站</a>
+        </h1>
+        <nav class="space-x-4">
+          <a href="login.html" class="text-white hover:underline">登录</a>
+          <a href="register.html" class="text-white hover:underline">注册</a>
+          <a
+            href="post-job.html"
+            class="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded hover:shadow-md transition duration-300"
+          >
+            <i class="fa fa-edit"></i> 发布工作
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- 发布工作表单 -->
+    <section class="flex justify-center items-center mt-20">
+      <div class="bg-white p-8 rounded-lg shadow-md w-full md:w-600 mx-6">
+        <h2 class="text-4xl text-center font-bold mb-4">创建工作列表</h2>
+        <form method="POST">
+          <h2 class="text-2xl font-bold mb-6 text-center text-gray-500">
+            职位信息
+          </h2>
+          <div class="mb-4">
+            <input
+              type="text"
+              name="title"
+              placeholder="职位标题"
+              class="w-full px-4 py-2 border rounded focus:outline-none"
+            />
+          </div>
+          <div class="mb-4">
+            <textarea
+              name="description"
+              placeholder="职位描述"
+              class="w-full px-4 py-2 border rounded focus:outline-none"
+            ></textarea>
+          </div>
+          <div class="mb-4">
+            <input
+              type="text"
+              name="salary"
+              placeholder="年薪"
+              class="w-full px-4 py-2 border rounded focus:outline-none"
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              type="text"
+              name="requirements"
+              placeholder="要求"
+              class="w-full px-4 py-2 border rounded focus:outline-none"
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              type="text"
+              name="benefits"
+              placeholder="福利"
+              class="w-full px-4 py-2 border rounded focus:outline-none"
+            />
+          </div>
+          <h2 class="text-2xl font-bold mb-6 text-center text-gray-500">
+            公司信息 & 地点
+          </h2>
+          <div class="mb-4">
+            <input
+              type="text"
+              name="company"
+              placeholder="公司名称"
+              class="w-full px-4 py-2 border rounded focus:outline-none"
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              type="text"
+              name="address"
+              placeholder="地址"
+              class="w-full px-4 py-2 border rounded focus:outline-none"
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              type="text"
+              name="city"
+              placeholder="城市"
+              class="w-full px-4 py-2 border rounded focus:outline-none"
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              type="text"
+              name="state"
+              placeholder="省份"
+              class="w-full px-4 py-2 border rounded focus:outline-none"
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              type="text"
+              name="phone"
+              placeholder="电话"
+              class="w-full px-4 py-2 border rounded focus:outline-none"
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              type="email"
+              name="email"
+              placeholder="接收申请的电子邮箱地址"
+              class="w-full px-4 py-2 border rounded focus:outline-none"
+            />
+          </div>
+          <button
+            class="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 my-3 rounded focus:outline-none"
+          >
+            保存
+          </button>
+          <a
+            href="/"
+            class="block text-center w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded focus:outline-none"
+          >
+            取消
+          </a>
+        </form>
+      </div>
+    </section>
+
+    <!-- 底部横幅 -->
+      <section class="container mx-auto my-6">
+        <div class="bg-blue-800 text-white rounded p-4 flex items-center justify-between">
+          <div>
+            <h2 class="text-xl font-semibold">想要招聘？</h2>
+            <p class="text-gray-200 text-lg mt-2">
+              现在就发布您的工作列表，找到完美的候选人。
+            </p>
+          </div>
+          <a href="post-job.html" class="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded hover:shadow-md transition duration-300">
+            <i class="fa fa-edit"></i> 发布工作
+          </a>
+        </div>
+      </section>
+  </body>
+</html>
