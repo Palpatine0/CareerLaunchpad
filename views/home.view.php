@@ -10,7 +10,7 @@
     </head>
     <body class="bg-gray-100">
         <!-- Navigation Bar -->
-        <header class="bg-blue-900 text-white p-4">
+        <header class="text-white p-4" style="background-color: #1e1e1e;">
             <div class="container mx-auto flex justify-between items-center">
                 <h1 class="text-3xl font-semibold">
                     <a href="index.html">ASU Internship Website</a>
@@ -35,9 +35,7 @@
                     <input type="text" name="keywords" placeholder="Keywords" class="w-full md:w-auto mb-2 px-4 py-2 focus:outline-none/>
                     <input type=" text" name="location" placeholder="Location" class="w-full md:w-auto mb-2 px-4 py-2
                     focus:outline-none" />
-                    <button
-                            class="w-full md:w-auto bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 focus:outline-none"
-                    >
+                    <button class="w-full md:w-auto bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 focus:outline-none">
                         <i class="fa fa-search"></i> Search
                     </button>
                 </form>
@@ -45,7 +43,7 @@
         </section>
 
         <!-- Top Banner -->
-        <section class="bg-blue-900 text-white py-6 text-center">
+        <section class="text-white py-6 text-center" style="background-color: #f6c84e;">
             <div class="container mx-auto">
                 <h2 class="text-3xl font-semibold">Unlock Your Career Potential</h2>
                 <p class="text-lg mt-2">
@@ -129,19 +127,14 @@
 
                 <!-- Bottom Banner -->
                 <section class="container mx-auto my-6">
-                    <div
-                            class="bg-blue-800 text-white rounded p-4 flex items-center justify-between"
-                    >
+                    <div class="text-white rounded p-4 flex items-center justify-between" style="background-color: #812740;">
                         <div>
                             <h2 class="text-xl font-semibold">Looking for Interns?</h2>
                             <p class="text-gray-200 text-lg mt-2">
                                 Post your internship position now and find the ideal candidate.
                             </p>
                         </div>
-                        <a
-                                href="post-job.html"
-                                class="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded hover:shadow-md transition duration-300"
-                        >
+                        <a href="post-job.html" class="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded hover:shadow-md transition duration-300">
                             <i class="fa fa-edit"></i> Post Internship
                         </a>
                     </div>
