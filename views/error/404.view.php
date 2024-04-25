@@ -15,7 +15,9 @@
                 <p class="text-center text-2xl mb-4">
                     This page does not exist
                 </p>
-                <div content="mt-5">ss</div>
+                <div content="mt-5">
+
+                </div>
                 <?php loadPartial('bottom-banner'); ?>
                 <?php loadPartial('footer'); ?>
             </div>
