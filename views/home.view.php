@@ -9,7 +9,6 @@
 
         <?php loadPartial('navbar'); ?>
         <?php loadPartial('showcase-search'); ?>
-
         <?php loadPartial('top-banner'); ?>
 
         <!-- Internship List -->
@@ -84,9 +83,8 @@
                     View All Internships
                 </a>
 
-
-                <?php require basePath('views/partials/footer.php') ?>
                 <?php loadPartial('bottom-banner'); ?>
+                <?php loadPartial('footer'); ?>
 
             </div>
         </section>

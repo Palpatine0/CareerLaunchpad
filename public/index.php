@@ -19,7 +19,7 @@ $uri = $_SERVER['REQUEST_URI'];
 if (array_key_exists($uri, $routes)) {
     require(basePath($routes[$uri]));
 } else {
-    var_dump("asshole");
+//    var_dump("asshole");
     require(basePath($routes['/public/404']));
 }
 
