@@ -7,7 +7,7 @@
                 Post your internship position now and find the ideal candidate.
             </p>
         </div>
-        <a href="post-job.html" class="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded hover:shadow-md transition duration-300">
+        <a href="/public/listings/publish" class="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded hover:shadow-md transition duration-300">
             <i class="fa fa-edit"></i> Post Internship
         </a>
     </div>
