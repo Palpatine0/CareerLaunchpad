@@ -4,6 +4,7 @@
     <?php loadPartial('head'); ?>
 
 
+
     <body class="bg-gray-100">
 
         <?php loadPartial('navbar'); ?>
