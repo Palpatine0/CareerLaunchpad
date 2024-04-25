@@ -79,13 +79,13 @@
                         </div>
                     </div>
                 </div>
-                <a href="listings.html" class="block text-xl text-center">
+                <a href="/public/listings" class="block text-xl text-center">
                     <i class="fa fa-arrow-alt-circle-right"></i>
                     View All Internships
                 </a>
 
 
-                <?php require basePath('views/partials/.php') ?>
+                <?php require basePath('views/partials/footer.php') ?>
                 <?php loadPartial('bottom-banner'); ?>
 
             </div>
