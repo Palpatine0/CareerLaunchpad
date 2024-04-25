@@ -4,21 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d921633-790e-455c-8ad4-d1aa69157c12" name="Changes" comment="feat: page post internship added">
-      <change afterPath="$PROJECT_DIR$/.idea/career-launchpad.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/blobs/version" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/router.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.php" afterDir="false" />
+    <list default="true" id="7d921633-790e-455c-8ad4-d1aa69157c12" name="Changes" comment="refactor: router update">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/navbar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router.php" beforeDir="false" afterPath="$PROJECT_DIR$/router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +91,7 @@
       <workItem from="1713776215885" duration="5008000" />
       <workItem from="1713788347598" duration="19649000" />
       <workItem from="1714010219392" duration="7385000" />
-      <workItem from="1714056630067" duration="5973000" />
+      <workItem from="1714056630067" duration="10555000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -183,7 +173,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714063287101</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="refactor: router update">
+      <option name="closed" value="true" />
+      <created>1714066034186</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1714066034186</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,9 +206,9 @@
     <MESSAGE value="Refactor: home.view.php&#10;Implemented method &quot;loadPartial()&quot;, as a replacer for &quot;require basePath('views/partials/XXX.php')&quot;" />
     <MESSAGE value="Refactor: home.view.php&#10;Implemented method &quot;loadView()&quot;" />
     <MESSAGE value="refactor: router config enhancement" />
-    <MESSAGE value="refactor: router update" />
     <MESSAGE value="feat: page post internship added" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: page post internship added" />
+    <MESSAGE value="refactor: router update" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: router update" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
