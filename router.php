@@ -44,12 +44,16 @@ class Router {
                 return;
             }
         }
-        echo "No matching route found for URI: " . $uri . " and method: " . $method . "\n";
-        echo "Registered routes: " . print_r($this->routes, true) . "\n";
-        http_response_code(404);
-        loadView("error/404");
+
+        $this->error();
     }
 
+
+    public function error($httpCode = 404) {
+        http_response_code($httpCode);
+        loadView("error/{$httpCode}");
+        exit;
+    }
 
 }
 
