@@ -1,7 +1,9 @@
 <?php
+
 function basePath($path = '') {
     return __DIR__ . '/' . $path;
 }
+// Rest of the file...
 
 function loadPartial($name) {
     $partialPath = basePath("views/partials/{$name}.php");
