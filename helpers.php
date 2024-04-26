@@ -3,6 +3,7 @@
 function basePath($path = '') {
     return __DIR__ . '/' . $path;
 }
+
 // Rest of the file...
 
 function loadPartial($name) {
@@ -14,9 +15,10 @@ function loadPartial($name) {
     }
 }
 
-function loadView($name) {
+function loadView($name, $data=[]) {
     $viewPath = basePath("views/{$name}.view.php");
     if (file_exists($viewPath)) {
+        extract($data);
         require $viewPath;
     } else {
         echo "View {$viewPath} doesn't exist!";
