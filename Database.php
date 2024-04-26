@@ -12,15 +12,17 @@ class Database {
         ];
         try {
             $this->conn = new PDO($dsn, $config['username'], $config['password']);
-            // echo "Connection established!";
         } catch (PDOException $e) {
             throw new Exception("Database connection failed:{$e->getMessage()}");
         }
     }
 
-    public function query($query) {
+    public function query($query, $params = []) {
         try {
             $sth = $this->conn->prepare($query);
+            foreach ($params as $param => $value) {
+                $sth->bindValue(':' . $param, $value);
+            }
             $sth->execute();
             return $sth;
         } catch (PDOException $e) {
