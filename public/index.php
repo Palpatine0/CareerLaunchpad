@@ -8,8 +8,8 @@ error_reporting(E_ALL);
 
 require '../helpers.php';
 
-require basePath('Database.php');
-require basePath('Router.php');
+require basePath('Framework/Database.php');
+require basePath('Framework/Router.php');
 
 $router = new Router();
 
