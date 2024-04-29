@@ -1,0 +1,16 @@
+{
+  "name": "myvendor/mypackage",
+  "description": "DEMO",
+  "authors": [
+    {
+      "name": "Palpatine0",
+      "email": "palaptine@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Framework\\": "Framework/",
+      "App\\": "App/"
+    }
+  }
+}
