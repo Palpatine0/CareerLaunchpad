@@ -13,11 +13,14 @@ error_reporting(E_ALL);
 class Router {
     protected $routes = [];
 
-    private function registerRoute($method, $uri, $controller) {
+    private function registerRoute($method, $uri, $action) {
+        list($controller, $controllerMethod) = explode('@', $action);
+
         $this->routes[] = [
             'method' => $method,
             'uri' => $uri,
-            'controller' => $controller
+            'controller' => $controller,
+            'controllerMethod' => $controllerMethod
         ];
     }
 
@@ -40,8 +43,11 @@ class Router {
     public function route($uri, $method) {
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === $method) {
-                require basePath('APP/'.$route['controller']);
-                return;
+                $controller = 'App\\Controllers\\' . $route['controller'];
+                $controllerMethod = $route['controllerMethod'];
+                $controllerInstance = new $controller();
+                $controllerInstance->$controllerMethod();
+
             }
         }
 
