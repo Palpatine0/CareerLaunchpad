@@ -1,6 +1,9 @@
 <?php
 namespace Framework;
+
 //error inspect
+use App\Controllers\ErrorController;
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -40,18 +43,42 @@ class Router {
         $this->registerRoute('DELETE', $uri, $controller);
     }
 
-    public function route($uri, $method) {
+    public function route($uri) {
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
+        $uriSegments = explode('/', trim($uri, '/'));
+
         foreach ($this->routes as $route) {
-            if ($route['uri'] === $uri && $route['method'] === $method) {
+            $routeSegments = explode('/', trim($route['uri'], '/'));
+            $match = false;
+
+            if (count($uriSegments) === count($routeSegments) && strtoupper($route['method']) === $requestMethod) {
+                $params = [];
+                $match = true;
+
+                for ($i = 0; $i < count($uriSegments); $i++) {
+                    if ($routeSegments[$i] !== $uriSegments[$i] && !preg_match('/\{(.+?)\}/', $routeSegments[$i])) {
+                        $match = false;
+                        break;
+                    }
+
+                    if (preg_match('/\{(.+?)\}/', $routeSegments[$i], $matches)) {
+                        $params[$matches[1]] = $uriSegments[$i];
+                    }
+                }
+            }
+
+            if ($match) {
                 $controller = 'App\\Controllers\\' . $route['controller'];
                 $controllerMethod = $route['controllerMethod'];
-                $controllerInstance = new $controller();
-                $controllerInstance->$controllerMethod();
 
+                $controllerInstance = new $controller();
+                $controllerInstance->$controllerMethod($params);
+                return;
             }
         }
 
-        $this->error();
+
+        ErrorController::notFound();
     }
 
 
