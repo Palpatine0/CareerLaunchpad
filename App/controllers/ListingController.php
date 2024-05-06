@@ -15,11 +15,12 @@ class ListingController {
     }
 
     public function index() {
-        $listing = $this->db->query('SELECT * FROM listing')->fetchAll();
+        $listing = $this->db->query('SELECT * FROM listing')->fetchAll(\PDO::FETCH_OBJ);
         loadView('listings/index', [
             'listings' => $listing
         ]);
     }
+
 
     public function publish() {
         loadView('listings/publish');

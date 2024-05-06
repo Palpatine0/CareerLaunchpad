@@ -43,5 +43,10 @@ function sanitize($dirty) {
     return filter_var(trim($dirty), FILTER_SANITIZE_SPECIAL_CHARS);
 }
 
+function redirect($url) {
+    header("Location: {$url}");
+    exit;
+}
+
 
 ?>
