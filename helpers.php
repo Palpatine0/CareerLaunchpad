@@ -15,7 +15,7 @@ function loadPartial($name) {
     }
 }
 
-function loadView($name, $data=[]) {
+function loadView($name, $data = []) {
     $viewPath = basePath("APP/views/{$name}.view.php");
     if (file_exists($viewPath)) {
         extract($data);
@@ -38,5 +38,15 @@ function inspectAndDie($value) {
     echo '<pre>';
     die();
 }
+
+function sanitize($dirty) {
+    return filter_var(trim($dirty), FILTER_SANITIZE_SPECIAL_CHARS);
+}
+
+function redirect($url) {
+    header("Location: {$url}");
+    exit;
+}
+
 
 ?>
