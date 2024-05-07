@@ -5,6 +5,6 @@ $router->addGet('/public/', 'HomeController@index');
 //$router->addGet('/public/listings/detail', 'controllers/listings/detail.php');
 $router->addGet('/public/listings', 'ListingController@index');
 $router->addGet('/public/listings/publish', 'ListingController@publish');
-$router->addGet('/public/listing/{id}', 'ListingController@detail');
+$router->addGet('/public/listings/{id}', 'ListingController@detail');
 $router->addPost('/public/listings', 'ListingController@store');
 ?>

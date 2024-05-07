@@ -87,9 +87,6 @@ class Router {
         loadView("error/{$httpCode}");
         exit;
     }
-
 }
 
 ?>
-
-

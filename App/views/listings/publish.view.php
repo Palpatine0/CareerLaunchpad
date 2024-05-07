@@ -25,11 +25,16 @@
                     <input type="text" name="salary" placeholder="Annual Salary" class="w-full px-4 py-2 border rounded focus:outline-none" value="<?= isset($listing['salary']) ? $listing['salary'] : '' ?>"/>
                 </div>
                 <div class="mb-4">
-                    <input type="text" name="requirements" placeholder="Requirements" class="w-full px-4 py-2 border rounded focus:outline-none" value="<?= isset($listing['requirement']) ? $listing['requirement'] : '' ?>"/>
+                    <input type="text" name="requirements" placeholder="Requirements" class="w-full px-4 py-2 border rounded focus:outline-none" value="<?= isset($listing['requirements']) ? $listing['requirements'] : '' ?>"/>
                 </div>
                 <div class="mb-4">
-                    <input type="text" name="benefits" placeholder="Benefits" class="w-full px-4 py-2 border rounded focus:outline-none" value="<?= isset($listing['benefit']) ? $listing['benefit'] : '' ?>"/>
+                    <input type="text" name="benefits" placeholder="Benefits" class="w-full px-4 py-2 border rounded focus:outline-none" value="<?= isset($listing['benefits']) ? $listing['benefits'] : '' ?>"/>
                 </div>
+
+                <div class="mb-4">
+                    <input type="text" name="tag" placeholder="Tag" class="w-full px-4 py-2 border rounded focus:outline-none" value="<?= isset($listing['tags']) ? $listing['tags'] : '' ?>"/>
+                </div>
+
                 <h2 class="text-2xl font-bold mb-6 text-center text-gray-500">
                     Company Information & Location
                 </h2>

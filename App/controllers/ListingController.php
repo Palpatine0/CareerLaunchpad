@@ -41,20 +41,13 @@ class ListingController {
         ]);
     }
 
-    public function store()
-    {
-        $allowedFields = ['title', 'description', 'salary', 'tags', 'company', 'address', 'city', 'state', 'phone', 'email', 'requirements', 'benefits'];
-
-        $newListingData = array_intersect_key($_POST, array_flip($allowedFields));
-
-        $newListingData['user_id'] = 1;
-
-        // Sanitize input data
-        $newListingData = array_map('sanitize', $newListingData);
-
-        $requiredFields = ['title', 'description', 'email', 'city', 'state'];
-
+    public function store() {
         $errors = [];
+        $allowedFields = ['title', 'description', 'salary', 'tags', 'company', 'address', 'city', 'state', 'phone', 'email', 'requirements', 'benefits'];
+        $newListingData = array_intersect_key($_POST, array_flip($allowedFields));
+        $newListingData['user_id'] = 1;
+        $newListingData = array_map('sanitize', $newListingData);
+        $requiredFields = ['title', 'description', 'email', 'city', 'state'];
 
         foreach ($requiredFields as $field) {
             if (empty($newListingData[$field]) || !is_string($newListingData[$field])) {
@@ -68,8 +61,23 @@ class ListingController {
                 'listing' => $newListingData
             ]);
         } else {
-            echo 'Successfully submitted!';
+            $fields = [];
+            foreach ($newListingData as $field => $value) {
+                $fields[] = $field;
+            }
+            $fields = implode(', ', $fields);
+            $values = [];
+            foreach ($newListingData as $field => $value) {
+                if ($value === '') {
+                    $newListingData[$field] = null;
+                }
+                $values[] = ':' . $field;
+            }
+            $values = implode(', ', $values);
+            $query = "INSERT INTO listing ({$fields}) VALUES ({$values})";
+            $this->db->query($query, $newListingData);
+            redirect('/public/listings');
+
         }
     }
-
 }

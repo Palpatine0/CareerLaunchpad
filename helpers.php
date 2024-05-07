@@ -44,8 +44,12 @@ function sanitize($dirty) {
 }
 
 function redirect($url) {
-    header("Location: {$url}");
-    exit;
+    if (!headers_sent()) {  // Check if headers are already sent
+        header("Location: {$url}");
+        exit;
+    } else {
+        echo "Headers already sent, cannot redirect!";
+    }
 }
 
 
