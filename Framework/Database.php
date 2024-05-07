@@ -30,6 +30,8 @@ class Database {
             throw new \Exception("Database connection failed:{$e->getMessage()}");
         }
     }
+
+
 }
 
 
