@@ -91,6 +91,7 @@ class ListingController {
             return;
         }
         $this->db->query('DELETE FROM listing WHERE id = :id', $params);
+        $_SESSION['success_message']="The occupation was successfully deleted!";
         redirect('/public/listings');
 
     }
