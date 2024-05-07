@@ -77,7 +77,21 @@ class ListingController {
             $query = "INSERT INTO listing ({$fields}) VALUES ({$values})";
             $this->db->query($query, $newListingData);
             redirect('/public/listings');
-
         }
+    }
+
+    public function destroy($params) {
+        $id = $params['id'];
+        $params = [
+            'id' => $id
+        ];
+        $listing = $this->db->query('SELECT * FROM listing WHERE id = :id', $params)->fetch();
+        if (!$listing) {
+            ErrorController::notFound("The occupation does not exist!");
+            return;
+        }
+        $this->db->query('DELETE FROM listing WHERE id = :id', $params);
+        redirect('/public/listings');
+
     }
 }
