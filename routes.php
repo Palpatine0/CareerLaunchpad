@@ -8,4 +8,6 @@ $router->addGet('/public/listings/publish', 'ListingController@publish');
 $router->addGet('/public/listings/{id}', 'ListingController@detail');
 $router->addPost('/public/listings', 'ListingController@store');
 $router->addDelete('/public/listings/{id}', 'ListingController@destroy');
+$router->addGet('/public/listings/edit/{id}', 'ListingController@edit');
+$router->addPut('/public/listings/{id}', 'ListingController@update');
 ?>

@@ -5,13 +5,14 @@
 
     <section class="container mx-auto p-4 mt-4">
         <div class="rounded-lg shadow-md bg-white p-3">
+            <?= loadPartial('message') ?>
             <div class="flex justify-between items-center">
                 <a class="block p-4 text-blue-700" href="/listings">
                     <i class="fa fa-arrow-alt-circle-left"></i>
                     Return to list
                 </a>
                 <div class="flex space-x-4 ml-4">
-                    <button href="/edit" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded" style="height: 40px">Edit</button>
+                    <a href="/public/listings/edit/<?= $listing['id'] ?>" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded" style="height: 40px">Edit</a>
                     <form method="POST">
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="submit" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded">Delete</button>
