@@ -10,4 +10,8 @@ $router->addPost('/public/listings', 'ListingController@store');
 $router->addDelete('/public/listings/{id}', 'ListingController@destroy');
 $router->addGet('/public/listings/edit/{id}', 'ListingController@edit');
 $router->addPut('/public/listings/{id}', 'ListingController@update');
+
+$router->addGet('/public/auth/login', 'UserController@login');
+$router->addGet('/public/auth/register', 'UserController@register');
+
 ?>
