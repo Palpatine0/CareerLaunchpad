@@ -6,9 +6,11 @@ function basePath($path = '') {
 
 // Rest of the file...
 
-function loadPartial($name) {
+function loadPartial($name,$data=[]) {
     $partialPath = basePath("APP/views/partials/{$name}.php");
+
     if (file_exists($partialPath)) {
+        extract($data);
         require $partialPath;
     } else {
         echo "Partial {$name} doesn't exist!";

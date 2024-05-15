@@ -13,5 +13,8 @@ $router->addPut('/public/listings/{id}', 'ListingController@update');
 
 $router->addGet('/public/auth/login', 'UserController@login');
 $router->addGet('/public/auth/register', 'UserController@register');
+$router->addPost('/public/auth/register', 'UserController@store');
+$router->addPost('/public/auth/logout', 'UserController@logout');
+$router->addPost('/public/auth/login', 'UserController@authenticate');
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\controllers;
 
 use Framework\Database;
 use Framework\Validation;
@@ -148,7 +148,7 @@ class ListingController {
             $updateValues['id'] = $id;
             $this->db->query($updateQuery, $updateValues);
             $_SESSION['success_message'] = "The occupation was successfully updated!";
-            redirect('/public/listings/'.$id);
+            redirect('/public/listings/' . $id);
         }
     }
 

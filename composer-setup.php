@@ -218,7 +218,7 @@ function getOptValue($opt, $argv, $default)
 }
 
 /**
- * Checks that user-supplied params are valid
+ * Checks that users-supplied params are valid
  *
  * @param mixed $installDir The required istallation directory
  * @param mixed $version The required composer version to install
@@ -605,7 +605,7 @@ function getHomeDir()
 }
 
 /**
- * Returns the location of the user directory from the environment
+ * Returns the location of the users directory from the environment
  * @throws RuntimeException If the environment value does not exists
  *
  * @return string
@@ -1464,7 +1464,7 @@ class HttpClient {
 
         /**
          * Attempt to find a local cafile or throw an exception.
-         * The user may go download one if this occurs.
+         * The users may go download one if this occurs.
          */
         if (!$cafile) {
             $cafile = self::getSystemCaRootBundlePath();
@@ -1558,8 +1558,8 @@ class HttpClient {
             }
 
             // handle proxy auth if present
-            if (isset($proxy['user'])) {
-                $auth = rawurldecode($proxy['user']);
+            if (isset($proxy['users'])) {
+                $auth = rawurldecode($proxy['users']);
                 if (isset($proxy['pass'])) {
                     $auth .= ':' . rawurldecode($proxy['pass']);
                 }
