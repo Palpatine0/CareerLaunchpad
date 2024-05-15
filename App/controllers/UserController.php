@@ -30,7 +30,7 @@ class UserController {
         $name = $_POST['name'];
         $email = $_POST['email'];
         $city = $_POST['city'];
-        $state = $_POST['state'];
+        $province = $_POST['province'];
         $password = $_POST['password'];
         $passwordConfirmation = $_POST['password_confirmation'];
 
@@ -66,7 +66,7 @@ class UserController {
                     'name' => $name,
                     'email' => $email,
                     'city' => $city,
-                    'state' => $state,
+                    'province' => $province,
                 ]
             ]);
             // Terminate further execution
@@ -97,19 +97,19 @@ class UserController {
                 'name' => $name,
                 'email' => $email,
                 'city' => $city,
-                'state' => $state,
+                'province' => $province,
                 'password' => password_hash($password, PASSWORD_DEFAULT) // Hash the password
             ];
 
             // Execute SQL insert operation to store new user data into the database
-            $this->db->query('INSERT INTO users (name, email, city, state, password) VALUES (:name, :email, :city, :state, :password)', $params);
+            $this->db->query('INSERT INTO users (name, email, city, province, password) VALUES (:name, :email, :city, :province, :password)', $params);
 
             Session::set('user', [
                 'id' => $userId,
                 'name' => $name,
                 'email' => $email,
                 'city' => $city,
-                'state' => $state,
+                'province' => $province,
             ]);
 
             // Redirect to the homepage upon successful user creation
@@ -197,7 +197,7 @@ class UserController {
                 'name' => $user['name'],
                 'email' => $user['email'],
                 'city' => $user['city'],
-                'state' => $user['state']
+                'province' => $user['province']
             ]);
 
             redirect('/public');
