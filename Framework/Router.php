@@ -3,6 +3,7 @@ namespace Framework;
 
 //error inspect
 use App\Controllers\ErrorController;
+use Framework\MiddleWare\Authorise;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -16,31 +17,32 @@ error_reporting(E_ALL);
 class Router {
     protected $routes = [];
 
-    private function registerRoute($method, $uri, $action) {
+    private function registerRoute($method, $uri, $action, $middleware = []) {
         list($controller, $controllerMethod) = explode('@', $action);
 
         $this->routes[] = [
             'method' => $method,
             'uri' => $uri,
             'controller' => $controller,
-            'controllerMethod' => $controllerMethod
+            'controllerMethod' => $controllerMethod,
+            'middleware' => $middleware
         ];
     }
 
-    public function addGet($uri, $controller) {
-        $this->registerRoute('GET', $uri, $controller);
+    public function addGet($uri, $controller, $middleware = []) {
+        $this->registerRoute('GET', $uri, $controller, $middleware);
     }
 
-    public function addPost($uri, $controller) {
-        $this->registerRoute('POST', $uri, $controller);
+    public function addPost($uri, $controller, $middleware = []) {
+        $this->registerRoute('POST', $uri, $controller, $middleware);
     }
 
-    public function addPut($uri, $controller) {
-        $this->registerRoute('PUT', $uri, $controller);
+    public function addPut($uri, $controller, $middleware = []) {
+        $this->registerRoute('PUT', $uri, $controller, $middleware);
     }
 
-    public function addDelete($uri, $controller) {
-        $this->registerRoute('DELETE', $uri, $controller);
+    public function addDelete($uri, $controller, $middleware = []) {
+        $this->registerRoute('DELETE', $uri, $controller, $middleware);
     }
 
     public function route($uri) {
@@ -73,6 +75,9 @@ class Router {
             }
 
             if ($match) {
+                foreach ($route['middleware'] as $middleware) {
+                    (new Authorise())->handle($middleware);
+                }
                 $controller = 'App\\Controllers\\' . $route['controller'];
                 $controllerMethod = $route['controllerMethod'];
 

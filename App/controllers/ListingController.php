@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Controllers;
+namespace App\controllers;
 
 use Framework\Database;
 use Framework\Validation;
+use Framework\Session;
+use Framework\Authorisation;
+use Framework\MiddleWare\Authorise;
 
 class ListingController {
 
@@ -15,7 +18,8 @@ class ListingController {
     }
 
     public function index() {
-        $listing = $this->db->query('SELECT * FROM listing')->fetchAll(\PDO::FETCH_OBJ);
+//        $listing = $this->db->query('SELECT * FROM listing ORDER BY created_at DESC')->fetchAll(\PDO::FETCH_OBJ);
+        $listing = $this->db->query('SELECT * FROM listing ORDER BY created_at DESC')->fetchAll();
         loadView('listings/index', [
             'listings' => $listing
         ]);
@@ -45,7 +49,7 @@ class ListingController {
         $errors = [];
         $allowedFields = ['title', 'description', 'salary', 'tags', 'company', 'address', 'city', 'state', 'phone', 'email', 'requirements', 'benefits'];
         $newListingData = array_intersect_key($_POST, array_flip($allowedFields));
-        $newListingData['user_id'] = 1;
+        $newListingData['user_id'] = Session::get('user')['id'];
         $newListingData = array_map('sanitize', $newListingData);
         $requiredFields = ['title', 'description', 'email', 'city', 'state'];
 
@@ -76,6 +80,7 @@ class ListingController {
             $values = implode(', ', $values);
             $query = "INSERT INTO listing ({$fields}) VALUES ({$values})";
             $this->db->query($query, $newListingData);
+            Session::setFlashMessage('success_message', 'Job Published!');
             redirect('/public/listings');
         }
     }
@@ -90,8 +95,12 @@ class ListingController {
             ErrorController::notFound("The occupation does not exist!");
             return;
         }
+        if (!Authorisation::isOwner($listing['user_id'])) {
+            Session::setFlashMessage('error_message', 'You do not have permission to delete this listing!');
+            return redirect('/public/listings/' . $listing['id']);
+        }
         $this->db->query('DELETE FROM listing WHERE id = :id', $params);
-        $_SESSION['success_message'] = "The occupation was successfully deleted!";
+        Session::setFlashMessage('success_message', 'The occupation was successfully deleted!');
         redirect('/public/listings');
     }
 
@@ -105,6 +114,13 @@ class ListingController {
             ErrorController::notFound("The occupation does not exist!");
             return;
         }
+
+
+        if (!Authorisation::isOwner($listing['user_id'])) {
+            Session::setFlashMessage('error_message', 'You do not have permission to edit this listing!');
+            return redirect('/public/listings/' . $listing['id']);
+        }
+
         loadView('listings/edit', [
             'listing' => $listing
         ]);
@@ -147,9 +163,37 @@ class ListingController {
             $updateQuery = "UPDATE listing SET {$updateFields} WHERE id = :id";
             $updateValues['id'] = $id;
             $this->db->query($updateQuery, $updateValues);
-            $_SESSION['success_message'] = "The occupation was successfully updated!";
-            redirect('/public/listings/'.$id);
+            Session::setFlashMessage('success_message', 'The occupation was successfully updated!');
+            redirect('/public/listings/' . $id);
         }
+    }
+
+    public function search() {
+        // Retrieve keywords and location from GET request, defaulting to empty strings if not provided
+        $keywords = isset($_GET['keywords']) ? trim($_GET['keywords']) : '';
+        $location = isset($_GET['location']) ? trim($_GET['location']) : '';
+
+        // Construct SQL query to search for listings with keywords in title, description, tags, or company name, and location in city or province
+        $query = "
+            SELECT * FROM listing WHERE 
+            (title LIKE :keywords OR description LIKE :keywords OR tags LIKE :keywords OR company LIKE :keywords) AND 
+            (city LIKE :location OR province LIKE :location)
+        ";
+
+        // Prepare query parameters, adding wildcard characters for partial matches
+        $params = [
+            'keywords' => "%{$keywords}%",
+            'location' => "%{$location}%"
+        ];
+
+        // Execute the query and fetch all matching records
+        $listings = $this->db->query($query, $params)->fetchAll();
+        // Load the view to display listings, passing the listings and search criteria
+        loadView('listings/index', [
+            'listings' => $listings,
+            'keywords' => $keywords,
+            'location' => $location
+        ]);
     }
 
 }
