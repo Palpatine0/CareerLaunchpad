@@ -12,7 +12,6 @@ use Framework\Session;
         <nav class="space-x-4">
 
 
-            //
             <?php if (Session::has('user')): ?>
                 <div class="flex justify-between items-center gap-4">
                     <div style="color: #8d1c3f;font-weight: bold;margin-top: 2px">

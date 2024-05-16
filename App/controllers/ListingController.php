@@ -80,7 +80,7 @@ class ListingController {
             $values = implode(', ', $values);
             $query = "INSERT INTO listing ({$fields}) VALUES ({$values})";
             $this->db->query($query, $newListingData);
-            Session::setFlashMessage('success_message','Job Published!');
+            Session::setFlashMessage('success_message', 'Job Published!');
             redirect('/public/listings');
         }
     }
@@ -96,11 +96,11 @@ class ListingController {
             return;
         }
         if (!Authorisation::isOwner($listing['user_id'])) {
-            Session::setFlashMessage('error_message','You do not have permission to delete this listing!');
+            Session::setFlashMessage('error_message', 'You do not have permission to delete this listing!');
             return redirect('/public/listings/' . $listing['id']);
         }
         $this->db->query('DELETE FROM listing WHERE id = :id', $params);
-        Session::setFlashMessage('success_message','The occupation was successfully deleted!');
+        Session::setFlashMessage('success_message', 'The occupation was successfully deleted!');
         redirect('/public/listings');
     }
 
@@ -117,7 +117,7 @@ class ListingController {
 
 
         if (!Authorisation::isOwner($listing['user_id'])) {
-            Session::setFlashMessage('error_message','You do not have permission to edit this listing!');
+            Session::setFlashMessage('error_message', 'You do not have permission to edit this listing!');
             return redirect('/public/listings/' . $listing['id']);
         }
 
@@ -163,9 +163,37 @@ class ListingController {
             $updateQuery = "UPDATE listing SET {$updateFields} WHERE id = :id";
             $updateValues['id'] = $id;
             $this->db->query($updateQuery, $updateValues);
-            Session::setFlashMessage('success_message','The occupation was successfully updated!');
+            Session::setFlashMessage('success_message', 'The occupation was successfully updated!');
             redirect('/public/listings/' . $id);
         }
+    }
+
+    public function search() {
+        // Retrieve keywords and location from GET request, defaulting to empty strings if not provided
+        $keywords = isset($_GET['keywords']) ? trim($_GET['keywords']) : '';
+        $location = isset($_GET['location']) ? trim($_GET['location']) : '';
+
+        // Construct SQL query to search for listings with keywords in title, description, tags, or company name, and location in city or province
+        $query = "
+            SELECT * FROM listing WHERE 
+            (title LIKE :keywords OR description LIKE :keywords OR tags LIKE :keywords OR company LIKE :keywords) AND 
+            (city LIKE :location OR province LIKE :location)
+        ";
+
+        // Prepare query parameters, adding wildcard characters for partial matches
+        $params = [
+            'keywords' => "%{$keywords}%",
+            'location' => "%{$location}%"
+        ];
+
+        // Execute the query and fetch all matching records
+        $listings = $this->db->query($query, $params)->fetchAll();
+        // Load the view to display listings, passing the listings and search criteria
+        loadView('listings/index', [
+            'listings' => $listings,
+            'keywords' => $keywords,
+            'location' => $location
+        ]);
     }
 
 }

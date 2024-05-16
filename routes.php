@@ -1,6 +1,8 @@
 <?php
+
 $router->addGet('/public/', 'HomeController@index');
 $router->addGet('/public/listings', 'ListingController@index');
+$router->addGet('/public/listings/search', 'ListingController@search');
 $router->addGet('/public/listings/publish', 'ListingController@publish',['auth']);
 $router->addGet('/public/listings/{id}', 'ListingController@detail');
 $router->addPost('/public/listings', 'ListingController@store',['auth']);
