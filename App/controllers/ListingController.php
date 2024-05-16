@@ -4,6 +4,9 @@ namespace App\controllers;
 
 use Framework\Database;
 use Framework\Validation;
+use Framework\Session;
+use Framework\Authorisation;
+use Framework\MiddleWare\Authorise;
 
 class ListingController {
 
@@ -15,7 +18,8 @@ class ListingController {
     }
 
     public function index() {
-        $listing = $this->db->query('SELECT * FROM listing')->fetchAll(\PDO::FETCH_OBJ);
+//        $listing = $this->db->query('SELECT * FROM listing ORDER BY created_at DESC')->fetchAll(\PDO::FETCH_OBJ);
+        $listing = $this->db->query('SELECT * FROM listing ORDER BY created_at DESC')->fetchAll();
         loadView('listings/index', [
             'listings' => $listing
         ]);
@@ -45,7 +49,7 @@ class ListingController {
         $errors = [];
         $allowedFields = ['title', 'description', 'salary', 'tags', 'company', 'address', 'city', 'state', 'phone', 'email', 'requirements', 'benefits'];
         $newListingData = array_intersect_key($_POST, array_flip($allowedFields));
-        $newListingData['user_id'] = 1;
+        $newListingData['user_id'] = Session::get('user')['id'];
         $newListingData = array_map('sanitize', $newListingData);
         $requiredFields = ['title', 'description', 'email', 'city', 'state'];
 
@@ -89,6 +93,11 @@ class ListingController {
         if (!$listing) {
             ErrorController::notFound("The occupation does not exist!");
             return;
+        }
+        if (!Authorisation::isOwner($listing->user_id)) {
+            inspect($_SESSION);
+            $_SESSION['error_message'] = 'You do not have permission to delete this listing!';
+            return redirect('/listings/' . $listing->id);
         }
         $this->db->query('DELETE FROM listing WHERE id = :id', $params);
         $_SESSION['success_message'] = "The occupation was successfully deleted!";
