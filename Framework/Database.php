@@ -25,6 +25,7 @@ class Database {
                 $sth->bindValue(':' . $param, $value);
             }
             $sth->execute();
+//            inspectAndDie($sth);
             return $sth;
         } catch (\PDOException $e) {
             throw new \Exception("Database connection failed:{$e->getMessage()}");

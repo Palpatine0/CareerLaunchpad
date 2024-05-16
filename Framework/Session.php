@@ -15,6 +15,8 @@ class Session {
         }
     }
 
+
+
     /**
      * Set a session key-value pair
      * Store the value under the specified session key.
@@ -72,5 +74,19 @@ class Session {
     public static function clearAll() {
         session_unset(); // Remove all session variables
         session_destroy(); // Destroy the session
+    }
+
+    public static function setFlashMessage($key, $message) {
+        // Call the set method to store the message in the session, prefixing the key with 'flash_' for differentiation.
+        self::set('flash_' . $key, $message);
+    }
+
+
+    public static function getFlashMessage($key, $default = null) {
+        // Retrieve the message from the session; if it does not exist, return the default value.
+        $message = self::get('flash_' . $key, $default);
+        // Delete the message from the session to ensure it can only be read once.
+        self::clear('flash_' . $key);
+        return $message;
     }
 }

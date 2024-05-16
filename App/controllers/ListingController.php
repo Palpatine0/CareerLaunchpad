@@ -80,6 +80,7 @@ class ListingController {
             $values = implode(', ', $values);
             $query = "INSERT INTO listing ({$fields}) VALUES ({$values})";
             $this->db->query($query, $newListingData);
+            Session::setFlashMessage('success_message','Job Published!');
             redirect('/public/listings');
         }
     }
@@ -94,13 +95,12 @@ class ListingController {
             ErrorController::notFound("The occupation does not exist!");
             return;
         }
-        if (!Authorisation::isOwner($listing->user_id)) {
-            inspect($_SESSION);
-            $_SESSION['error_message'] = 'You do not have permission to delete this listing!';
-            return redirect('/listings/' . $listing->id);
+        if (!Authorisation::isOwner($listing['user_id'])) {
+            Session::setFlashMessage('error_message','You do not have permission to delete this listing!');
+            return redirect('/public/listings/' . $listing['id']);
         }
         $this->db->query('DELETE FROM listing WHERE id = :id', $params);
-        $_SESSION['success_message'] = "The occupation was successfully deleted!";
+        Session::setFlashMessage('success_message','The occupation was successfully deleted!');
         redirect('/public/listings');
     }
 
@@ -156,7 +156,7 @@ class ListingController {
             $updateQuery = "UPDATE listing SET {$updateFields} WHERE id = :id";
             $updateValues['id'] = $id;
             $this->db->query($updateQuery, $updateValues);
-            $_SESSION['success_message'] = "The occupation was successfully updated!";
+            Session::setFlashMessage('success_message','The occupation was successfully updated!');
             redirect('/public/listings/' . $id);
         }
     }
