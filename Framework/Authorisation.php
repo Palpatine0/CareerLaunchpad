@@ -7,11 +7,14 @@ class Authorisation {
         // Retrieve current user information from the session
         $sessionUser = Session::get('user');
 
+
         // Check if the session has user information and if the user ID is set
         if ($sessionUser !== null && isset($sessionUser['id'])) {
             // Convert the user ID in the session to an integer
-            $sessionUserId = (int) $sessionUser['id'];
+            $sessionUserId =  $sessionUser['id'];
             // Compare the user ID in the session with the provided resource ID
+
+
             return $sessionUserId === $resourceId;
         }
 

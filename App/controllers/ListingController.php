@@ -114,6 +114,13 @@ class ListingController {
             ErrorController::notFound("The occupation does not exist!");
             return;
         }
+
+
+        if (!Authorisation::isOwner($listing['user_id'])) {
+            Session::setFlashMessage('error_message','You do not have permission to edit this listing!');
+            return redirect('/public/listings/' . $listing['id']);
+        }
+
         loadView('listings/edit', [
             'listing' => $listing
         ]);
